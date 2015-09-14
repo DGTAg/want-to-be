@@ -37,9 +37,23 @@
 | in the URL cannot be matched to a valid route.
 |
 */
-
-$route['default_controller'] = "awesome";
+// [url] = [controller/model/item]
+#$route['default_controller'] = "welcome";
 $route['404_override'] = '';
+$route['default_controller'] = 'awesome';
+// $route['files/create'] = 'files/create';
+// $route['files/view/:num'] = 'files/view/$id';
+// $route['files/lists'] = 'files/lists';
+// $route['files/view'] = 'files/view/1';
+// //$route['files/(:any)'] = 'files/view/$1';
+// $route['files'] = 'files';
+// $route['jobs/lists'] = 'jobs/lists';
+// $route['jobs/lists_json'] = 'jobs/lists_json';
+// $route['jobs/lists_by_state/(:any)'] = 'jobs/lists_by_state/$1';
+// $route['jobs/lists_by_category/(:any)'] = 'jobs/lists_by_category/$1';
+// $route['jobs/lists_by_category_edu/(:any)'] = 'jobs/lists_by_category_course/$1';
+// $route['(:any)'] = 'pages/view/$1';
+//$route['default_controller'] = 'files/create';
 
 
 /* End of file routes.php */

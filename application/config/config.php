@@ -14,7 +14,7 @@
 | path to your installation.
 |
 */
-$config['base_url']	= 'http://web.com/want-to-be/';
+$config['base_url']	= 'http://want2be.com/want-to-be/';
 
 /*
 |--------------------------------------------------------------------------

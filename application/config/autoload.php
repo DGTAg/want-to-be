@@ -109,7 +109,7 @@ $autoload['language'] = array();
 |
 */
 
-$autoload['model'] = array('mfb','mcore','mdb');
+$autoload['model'] = array('mfb','mcore','mdb','mapi','jobs_model');
 
 
 /* End of file autoload.php */
