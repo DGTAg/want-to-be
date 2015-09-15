@@ -29,35 +29,35 @@ class Mapi extends CI_Model {
     if($search != "0") {
 
       $sql = "SELECT KSS_ID,UNI_DESC,KSS_KOD_PROG,KSS_PROG_DESC,KSS_SEM,BID_DESC,FAK_DESC
-              FROM kursus
-              INNER JOIN lookup
-              INNER JOIN fbpageinfo
-              INNER JOIN bidang
-              INNER JOIN core_universiti
-              INNER JOIN fakulti
-              ON lookup.LOK_BIDANG=kursus.kss_bid AND
-              lookup.LOK_FBPAGE = fbpageinfo.FBPINFO_ID AND
-              bidang.BID_ID = KSS_BID AND
-              core_universiti.UNI_ID = KSS_UNI AND
-              fakulti.FAK_ID = KSS_FAK
-              where fbpageinfo.FBPINFO_DESC like '%$search%'
-              GROUP BY KSS_KOD_PROG";
+							FROM kursus
+							INNER JOIN lookup
+							INNER JOIN bidang
+							INNER JOIN universiti
+							INNER JOIN fakulti
+							ON
+							(lookup.LOK_BIDANG=kursus.kss_bid OR
+							lookup.LOK_FAKULTI=kursus.kss_FAK) AND
+							bidang.BID_ID = KSS_BID AND
+							universiti.UNI_ID = KSS_UNI AND
+							fakulti.FAK_ID = KSS_FAK
+							where lookup.LOK_DESC like '%$search%'
+							GROUP BY KSS_KOD_PROG";
 
     } else {
 
       $sql = "SELECT KSS_ID,UNI_DESC,KSS_KOD_PROG,KSS_PROG_DESC,KSS_SEM,BID_DESC,FAK_DESC
-              FROM kursus
-              INNER JOIN lookup
-              INNER JOIN fbpageinfo
-              INNER JOIN bidang
-              INNER JOIN core_universiti
-              INNER JOIN fakulti
-              ON lookup.LOK_BIDANG=kursus.kss_bid AND
-              lookup.LOK_FBPAGE = fbpageinfo.FBPINFO_ID AND
-              bidang.BID_ID = KSS_BID AND
-              core_universiti.UNI_ID = KSS_UNI AND
-              fakulti.FAK_ID = KSS_FAK
-              GROUP BY KSS_KOD_PROG
+							FROM kursus
+							INNER JOIN lookup
+							INNER JOIN bidang
+							INNER JOIN universiti
+							INNER JOIN fakulti
+							ON
+							(lookup.LOK_BIDANG=kursus.kss_bid OR
+							lookup.LOK_FAKULTI=kursus.kss_FAK) AND
+							bidang.BID_ID = KSS_BID AND
+							universiti.UNI_ID = KSS_UNI AND
+							fakulti.FAK_ID = KSS_FAK
+							GROUP BY KSS_KOD_PROG
               LIMIT 0, 20";
 
     }

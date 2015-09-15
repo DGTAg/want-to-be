@@ -1,7 +1,7 @@
 # Want To Be
 
 ### Pre requisite
-1. Apache + PHP + mod_rewrite + MySQL
+1. Apache + PHP + mod_rewrite + MySQL + cURL
 1. Brain
 1. Brain
 1. And brain...

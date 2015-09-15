@@ -48,4 +48,11 @@
 
   	}
 
+    function drop_table($tbl="", $postname="") {
+
+      $tbl_name = $tbl.$postname;
+      $this->dbforge->drop_table($tbl_name);
+
+    }
+
  }

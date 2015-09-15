@@ -2,7 +2,7 @@
 
 class Awesome extends CI_Controller {
 
-	public function index()
+	public function index($selected_id='')
 	{
 
 		$this->load->library('facebook');
@@ -21,16 +21,23 @@ class Awesome extends CI_Controller {
 			$this->mfb->fb_register($data);
 
 			// Start processing
-			$demo_access_token = 'CAACEdEose0cBAMOXKaS3VcR5cxKoWL4MNvMqPG3g38UPRL5QXoShS4frICPOEhPXjfx9tZCOG7pEeLe2rYlfeT3TVBjxb0NIKh3lN3hakYypiQzGW4s9LyhZAqw2W0awsREx55kYowKZCrrNezqpgu5dQyKjYJZCy4hITrqhouN2boZBfw4IMQNRHuztHCE3CzKL047IiNiguZBdEbdahr';
+
+			//Epy
+			$demo_access_token = 'CAACEdEose0cBABlvgUZBhHatXntDn4agMwCwxZBumSO7rD5tdUvQjSg1EMiuveABu1TwY23ZAD32ILQGDg01wVpoX2wTtAyHHNbxtEi4i9fA2EsknrsdZBcFpWVe9fhSq5tcFubjD1if7SHEaZBXMZAwKIRVF2LpdgTCLI4vZCQWa3bxdM6nBPbSMvxypDFpaYUR6D7ZAv4pEQty1gm39RqqYiQBq5qZBbZAgZD';
+
+			//Man
+			//$demo_access_token = 'CAACEdEose0cBABUuwpOU62Yxs8zmEqxfYr8DqZC8KoGv7IM9O03rcbvcPUqrZA887ZBJd5AZBEi09butsE7VgPucfi6VtDLZCrFmFhwUZCOssTrALfk5HVGkxZB7KRfkvIu7OYE13fdfPSsdUY4O837dVXKD08pOWMVkUGXgO1DzqkC0dkuRwjvyXSkRNa0iVVuvLFWHzQqqwZDZD';
 
 			//$data['me'] = $this->facebook->api('/me?fields=id,name,likes,books');
 
 			// user_likes
-			$like_url = 'https://graph.facebook.com/me/likes?about&access_token='.$demo_access_token.'&limit=100';
+			$like_url = 'https://graph.facebook.com/me/likes?access_token='.$demo_access_token.'&limit=100';
+			$data['user_like'] = $like_url;
 
 			$options = array(
 				CURLOPT_RETURNTRANSFER	=> TRUE,
-				CURLOPT_HEADER					=> FALSE
+				CURLOPT_HEADER					=> FALSE,
+				CURLOPT_SSL_VERIFYPEER => FALSE
 			);
 
 			$ch = curl_init($like_url);
@@ -38,7 +45,35 @@ class Awesome extends CI_Controller {
 			$content = curl_exec($ch);
 			curl_close($ch);
 
+
 			$user_like =  json_decode($content, TRUE);
+			//$data['user_like'] = $user_like;
+
+          if($user_like <> NULL)
+            $nextJson = $user_like["paging"]["next"];
+
+         $count = 0;
+
+         while($nextJson <> NULL){
+
+               $ch = curl_init($nextJson);
+               curl_setopt_array($ch, $options);
+               $contentNext = curl_exec($ch);
+               curl_close($ch);
+
+               $user_like_next =  json_decode($contentNext, TRUE);
+               $user_like = array_merge_recursive($user_like,$user_like_next);
+
+               if($user_like_next["paging"]["next"] <> NULL)
+                  $nextJson = $user_like_next["paging"]["next"];
+               else{
+                  $nextJson = NULL;
+               }
+
+               $count++;
+         }
+
+
 
 			// user_about_me
 			$about_url = 'https://graph.facebook.com/me/?access_token='.$demo_access_token.'&limit=100';
@@ -60,10 +95,20 @@ class Awesome extends CI_Controller {
 			$data['weighting'] = $this->mcore->weighting($user_like, $table_name);
 
 			$top = 0;
+
+			if(isset($selected_id)) {
+				$top_interest = $this->mcore->get_like_desc($selected_id);
+
+			} else {
+				$top_interest = $data['weighting'][0]['like_category'];
+			}
+
+
 			$interest = null;
 			foreach ($data['weighting'] as $w) {
 				if($top < 1) {
 					$interest	= $w->like_category;
+					//$top_interest = $w->like_category;
 				}
 				$top++;
 			}
@@ -72,10 +117,19 @@ class Awesome extends CI_Controller {
 			//$this->backend->gen_graph($data['weighting']);
 			//
 
+
+         //Drop table
+         $this->mdb->drop_table('like_', $postname);
+
+
 			$interest = 'JOB16';
 			$jobs_category = $this->jobs_model->get_jobs_by_category($interest);
 			$jobs_category_edu = $this->jobs_model->get_jobs_by_category_edu($interest);
-			$jobs_category_edu_table = $this->jobs_model->get_jobs_by_category_edu_details($interest);
+
+
+			$jobs_category_edu_table = $this->jobs_model->get_jobs_by_category_edu_details($top_interest);
+
+
 			$edu_levels = $this->jobs_model->get_edu_levels();
 
 			$set_dataX = null;
@@ -129,10 +183,10 @@ class Awesome extends CI_Controller {
 
 	}
 
-	public function university()
-	{
-		$this->load->view('dashboard');
-	}
+	// public function interest($interest_id)
+	// {
+	// 	$this->load->view('dashboard');
+	// }
 
 }
 

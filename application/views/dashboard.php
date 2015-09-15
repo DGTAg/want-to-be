@@ -162,12 +162,12 @@
                 </div><!-- /.box-header -->
                 <div class="box-body">
                   <div class="row">
-                    <div class="col-md-3">
+                    <div class="col-md-2">
                       <img src="https://graph.facebook.com/<?=$user_profile['id']?>/picture?type=large&height=120&width=120" class="img-thumbnail" alt="User Image">
                     </div>
                     <div class="col-md-8">
                       <p class="lead">
-                        <i class="fa fa-user"></i>&nbsp;&nbsp;<?=$user_profile['name']?><br/>
+                        <i class="fa fa-user"></i>&nbsp;&nbsp;<?=$me['name']?><br/>
                         <i class="fa fa-intersex"></i>&nbsp;&nbsp;<?=$me['gender'] ?><br/>
                         <i class="fa fa-location-arrow"></i>&nbsp;&nbsp;<?=$me['location']['name']?><br/>
                         <i class="fa fa-commenting-o"></i>&nbsp;&nbsp;<?=$me['about']?>
@@ -181,17 +181,19 @@
 
             </div>
               <?php
+
               $top = 0;
               foreach ($weighting as $w) {
                 if($top < 4) {
+                  $interest_id = $this->mcore->get_like_id($w['like_category']);
               ?>
               <div class="col-md-3">
-                <a href="#">
+                <a href="<?php echo base_url(); ?>awesome/index/<?php echo $interest_id; ?>">
                 <div class="info-box weighting-box">
 
                     <div class="info-box-content" style="margin-left:0px;">
-                      <span class="info-box-text"><?=$w->like_category?></span>
-                      <span class="info-box-number" style="font-size:35px;"><?=$w->weight?>&nbsp;%</span>
+                      <span class="info-box-text"><?=$w["like_category"]?></span>
+                      <span class="info-box-number" style="font-size:35px;"><?=$w["weight"]?>&nbsp;%</span>
                     </div><!-- /.info-box-content -->
 
                 </div><!-- /.info-box -->
@@ -203,6 +205,71 @@
               }
               ?>
             </div>
+
+
+
+            <!-- <div class="box box-success">
+                <div class="box-header with-border">
+                  <h3 class="box-title">Courses</h3>
+                  <div class="box-tools pull-right">
+                    <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+                    <button class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+                  </div>
+                </div>
+                <div class="box-body chart-responsive">
+
+              <div class="box">
+                <div class="box-body">
+                  <table id="example1" class="table table-bordered table-striped">
+                    <thead>
+                      <tr>
+                        <th>Negeri</th>
+                        <th>Universiti</th>
+                        <th>Kod</th>
+                        <th>Nama Program</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <?php
+                        foreach ($jobs_edu as $job_data) {
+                          echo "<tr>
+                          <td>". $job_data['UNI_STATE'] ."</td>
+                          <td>". $job_data['UNI_DESC'] ."</td>
+                          <td>". $job_data['KSS_KOD_PROG'] ."</td>
+                          <td>". $job_data['KSS_PROG_DESC'] ."</td>
+                          </tr>";
+                        }
+                      ?>
+                    </tbody>
+                    <tfoot>
+                      <tr>
+                        <th>Negeri</th>
+                        <th>Universiti</th>
+                        <th>Kod</th>
+                        <th>Nama Program</th>
+                      </tr>
+                    </tfoot>
+                  </table>
+                </div>
+              </div>
+
+                </div>
+              </div> -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
             <!-- Weightage -->
             <div class="row">
@@ -228,6 +295,65 @@
                   </div>
               </div>
             </div>
+
+
+
+
+            <div class="box box-success">
+                <div class="box-header with-border">
+                  <h3 class="box-title">Courses</h3>
+                  <div class="box-tools pull-right">
+                    <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+                    <button class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+                  </div>
+                </div>
+                <div class="box-body chart-responsive">
+
+              <div class="box">
+                <div class="box-body">
+                  <table id="example1" class="table table-bordered table-striped">
+                    <thead>
+                      <tr>
+                        <th>Negeri</th>
+                        <th>Universiti</th>
+                        <th>Kod</th>
+                        <th>Nama Program</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <?php
+                        foreach ($jobs_edu as $job_data) {
+                          echo "<tr>
+                          <td>". $job_data['UNI_STATE'] ."</td>
+                          <td>". $job_data['UNI_DESC'] ."</td>
+                          <td>". $job_data['KSS_KOD_PROG'] ."</td>
+                          <td>". $job_data['KSS_PROG_DESC'] ."</td>
+                          </tr>";
+                        }
+                      ?>
+                    </tbody>
+                    <tfoot>
+                      <tr>
+                        <th>Negeri</th>
+                        <th>Universiti</th>
+                        <th>Kod</th>
+                        <th>Nama Program</th>
+                      </tr>
+                    </tfoot>
+                  </table>
+                </div>
+              </div>
+
+                </div>
+              </div>
+
+
+
+
+
+
+
+
 
             <div class="row">
             <div class="col-md-6">
