@@ -1,5 +1,9 @@
 # Want To Be
 
+### Contributors
+1. Man
+1. Epy
+
 ### Pre requisite
 1. Apache + PHP + mod_rewrite + MySQL + cURL
 1. Brain
