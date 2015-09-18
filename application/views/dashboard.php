@@ -301,7 +301,7 @@
 
             <div class="box box-success">
                 <div class="box-header with-border">
-                  <h3 class="box-title">Courses</h3>
+                  <h3 class="box-title">Courses You Might Like</h3>
                   <div class="box-tools pull-right">
                     <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
                     <button class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
@@ -360,7 +360,7 @@
               <!-- DONUT CHART -->
               <div class="box box-primary">
                 <div class="box-header with-border">
-                  <h3 class="box-title">STATISTIK Pekerjaan</h3>
+                  <h3 class="box-title">Current Employment Status</h3>
                   <div class="box-tools pull-right">
                     <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
                     <button class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
@@ -375,26 +375,26 @@
               </div><!-- /.box -->
 
               <!-- BAR CHART -->
-              <div class="box box-danger">
+              <!-- <div class="box box-danger">
                 <div class="box-header with-border">
-                  <h3 class="box-title">Pemegang Ijazah dan Diploma Mengikut Negeri</h3>
+                  <h3 class="box-title">Interest Based Degree &amp; Diploma Holders</h3>
                   <div class="box-tools pull-right">
                     <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
                     <button class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
                   </div>
                 </div>
                 <div class="box-body chart-responsive">
-                  <!-- <div class="chart" id="sales-chart" style="height: 300px; position: relative;"></div> -->
+
                   <canvas class="chart" id="canvas-bar" style="height: 300px; position: relative;"></canvas>
-                </div><!-- /.box-body -->
-              </div><!-- /.box -->
+                </div>
+              </div> -->
 
             </div><!-- /.col (LEFT) -->
             <div class="col-md-6">
               <!-- LINE CHART -->
               <div class="box box-info">
                 <div class="box-header with-border">
-                  <h3 class="box-title">Peluang Kerjaya vs Kursus Mengikut Negeri</h3>
+                  <h3 class="box-title">  Employability By State</h3>
                   <div class="box-tools pull-right">
                     <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
                     <button class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
@@ -406,59 +406,31 @@
                 </div><!-- /.box-body -->
               </div><!-- /.box -->
 
-              <!-- BAR CHART -->
-              <div class="box box-success">
-                <div class="box-header with-border">
-                  <h3 class="box-title">Senarai Kursus Mengikut Minat</h3>
-                  <div class="box-tools pull-right">
-                    <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
-                    <button class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
-                  </div>
-                </div>
-                <div class="box-body chart-responsive">
-                  <!-- <div class="chart" id="bar-chart" style="height: 300px;"></div> -->
-              <div class="box">
-                <div class="box-body">
-                  <table id="example1" class="table table-bordered table-striped">
-                    <thead>
-                      <tr>
-                        <th>Negeri</th>
-                        <th>Universiti</th>
-                        <th>Kod</th>
-                        <th>Nama Program</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <?php
-                        foreach ($jobs_edu as $job_data) {
-                          echo "<tr>
-                          <td>". $job_data['UNI_STATE'] ."</td>
-                          <td>". $job_data['UNI_DESC'] ."</td>
-                          <td>". $job_data['KSS_KOD_PROG'] ."</td>
-                          <td>". $job_data['KSS_PROG_DESC'] ."</td>
-                          </tr>";
-                        }
-                      ?>
-                    </tbody>
-                    <tfoot>
-                      <tr>
-                        <th>Negeri</th>
-                        <th>Universiti</th>
-                        <th>Kod</th>
-                        <th>Nama Program</th>
-                      </tr>
-                    </tfoot>
-                  </table>
-                </div><!-- /.box-body -->
-              </div><!-- /.box -->
-
-                </div><!-- /.box-body -->
-              </div><!-- /.box -->
-
             </div><!-- /.col (RIGHT) -->
           </div><!-- /.row -->
 
+            <div class="row">
+              <div class="col-md-12">
+                <div class="box box-danger">
+                  <div class="box-header with-border">
+                    <h3 class="box-title">Interest Based Degree &amp; Diploma Holders</h3>
+                    <div class="box-tools pull-right">
+                      <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+                      <button class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+                    </div>
+                  </div>
+                  <div class="box-body chart-responsive">
+                    <!-- <div class="chart" id="sales-chart" style="height: 300px; position: relative;"></div> -->
+                    <canvas class="chart" id="canvas-bar" style="height: 300px; position: relative;"></canvas>
+                  </div><!-- /.box-body -->
+                </div>
+              </div>
+
+            </div>
+
           </div><!-- /.row -->
+
+
         </section><!-- /.content -->
       </div><!-- /.content-wrapper -->
 
